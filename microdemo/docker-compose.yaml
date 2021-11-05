@@ -1,17 +1,17 @@
 services:
   eshop-eureka-server:
-    build: ./eshop-eureka-server
-    container_name: eshop-eureka-server
+    build: . #/eshop-eureka-server
+    #container_name: eshop-eureka-server
   eshop-sevice:
     build: ./eshop-sevice
-    container_name: eshop-sevice
+    #container_name: eshop-sevice
     ports:
       - "8000:8000"
     dependes_on:
       - eshop-eureka-server
   eshop-messaging-service:
     build: ./eshop-messaging-service
-    container_name: eshop-messaging-service
+    #container_name: eshop-messaging-service
     ports:
       - "8001:8001"
     dependes_on:
