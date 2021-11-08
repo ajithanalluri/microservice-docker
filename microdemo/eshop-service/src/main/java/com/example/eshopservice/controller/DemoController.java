@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -22,18 +24,12 @@ public class DemoController {
     @Value("${spring.application.name}")
     private String appName;
 
-  /*  @GetMapping(value = "/employee")
-    public Employee firstPage() {
-        log.info("DemoMessageController :: employee data");
+    @GetMapping(value = "/response")
+    public ResponseEntity<?> get() {
 
-        Employee emp = new Employee();
-        emp.setName("emp1");
-        emp.setDesignation("manager");
-        emp.setEmpId("1");
-        emp.setSalary(3000);
-
-        return emp;
-    }*/
+        log.info("DemoController :: getresponse");
+        return new ResponseEntity<String>("eshop-service response",HttpStatus.OK);
+    }
 
     @GetMapping("/")
     public String getHost() throws UnknownHostException
