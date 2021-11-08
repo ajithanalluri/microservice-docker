@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.logging.Logger;
 
 @RestController
 public class DemoMessageController {
+    static final Logger log = Logger.getLogger(DemoMessageController.class.getName());
+
     @Autowired
     @Lazy
     private EurekaClient eurekaClient;
@@ -22,12 +25,14 @@ public class DemoMessageController {
     @GetMapping("/")
     public String getHost() throws UnknownHostException
     {
+        log.info("DemoMessageController :: getHost");
         return InetAddress.getLocalHost().getHostName()+" "+InetAddress.getLocalHost().getHostAddress();
 
     }
 
     @GetMapping("instanceId")
     public String instanceInfo() {
+        log.info("DemoMessageController :: instanceinfo");
         return eurekaClient.getApplication(appName).getName();
     }
 
